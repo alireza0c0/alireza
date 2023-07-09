@@ -1,2 +1,2 @@
 # alireza
-print('hello')
+سلام کره خر عزیز
