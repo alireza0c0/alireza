@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی حدس عدد</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: #333;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>بازی حدس عدد</h1>
+        <p>یک عدد بین 1 تا 100 حدس بزنید:</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button onclick="checkGuess()">حدس بزن</button>
+        <p class="message" id="message"></p>
+    </div>
+
+    <script>
+        // تولید یک عدد تصادفی بین 1 تا 100
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            const message = document.getElementById('message');
+
+            attempts++;
+
+            if (guess === randomNumber) {
+                message.textContent = `تبریک می‌گم! شما عدد ${randomNumber} را در ${attempts} تلاش حدس زدید.`;
+                message.style.color = 'green';
+                disableInput();
+            } else if (guess < randomNumber) {
+                message.textContent = 'عدد شما کوچک‌تر از حدس است.';
+                message.style.color = 'red';
+            } else {
+                message.textContent = 'عدد شما بزرگ‌تر از حدس است.';
+                message.style.color = 'red';
+            }
+        }
+
+        function disableInput() {
+            document.getElementById('guessInput').disabled = true;
+            document.querySelector('button').disabled = true;
+        }
+    </script>
+
+</body>
+</html>
